@@ -6,7 +6,7 @@
 
 ---
 
-## 🔥 Tier 0 — MUST MASTER (Non‑Negotiable)
+## Tier 0 — MUST MASTER (Non‑Negotiable)
 
 ### Amazon Bedrock (Core)
 - [ ] On‑demand vs Provisioned Throughput
@@ -57,7 +57,7 @@
 
 ---
 
-## 🔥 Tier 1 — VERY HIGH PRIORITY
+## Tier 1 — VERY HIGH PRIORITY
 
 ### Amazon OpenSearch Service
 - [ ] Vector search fundamentals
@@ -125,7 +125,7 @@
 
 ---
 
-## ⚠️ Tier 2 — MEDIUM PRIORITY (Know When NOT to Choose)
+## Tier 2 — MEDIUM PRIORITY (Know When NOT to Choose)
 
 - [ ] AWS X-Ray
 - [ ] Amazon QuickSight
@@ -156,7 +156,7 @@
 
 ---
 
-## 🧪 Tier 3 — LOW PRIORITY
+## Tier 3 — LOW PRIORITY
 
 - [ ] Amazon Connect
 - [ ] SageMaker Clarify
@@ -178,18 +178,3 @@
 - [ ] Amazon EKS (Kubernetes-based platforms)
 
 ---
-
-## 🚨 Cross‑Cutting Exam Checks (Apply to Every Question)
-
-- [ ] Near real‑time? → Event‑driven
-- [ ] Least operational overhead? → Managed > custom
-- [ ] Ordering question? → Metrics → Data → Execute → Gates → Analyze
-- [ ] Governance / safety? → Guardrails, IAM
-- [ ] Retrieval vs ranking? → Hybrid + reranker
-- [ ] Batch vs async vs real‑time semantics
-
----
-
-### Exam Mantra
-
-> **AWS Professional exams reward managed, explicit, boring architectures — not clever ones.**
