@@ -1,4 +1,4 @@
-# Spec Mode Analysis Prompt
+## Spec Mode Analysis Prompt
 
 ```
 You are analyzing an existing codebase before implementing a feature enhancement or bug fix.
@@ -105,11 +105,125 @@ Important Rules
 
 Only produce the analysis above. Do not generate implementation or tasks yet.
 ```
-## Step 1: Analysis
-Run the Spec Mode Analysis Prompt
 
-## Step 1: Spec Generation
+## DELTA Spec Prompt
+
 ```
-Using the above analysis, generate a minimal spec and task list
-for implementing the target behavior.
+You are generating a DELTA SPEC for modifying an existing codebase.
+
+Your goal is to define ONLY the minimal set of changes required to implement the requested feature enhancement or bug fix.
+
+Do NOT redesign the system.
+Do NOT refactor unrelated modules.
+Do NOT introduce new architecture unless absolutely necessary.
+
+Assume the current system works correctly and should remain unchanged except where explicitly required.
+
+Use the prior ANALYSIS as the source of truth.
+
+Focus only on the smallest set of changes needed to achieve the target behavior.
+
+Return the output in the following structure:
+
+--------------------------------------------------
+
+DELTA SPEC
+
+1. Change Objective
+Describe the exact problem being solved or feature being added.
+
+Explain the minimal behavioral change required.
+
+2. Trigger Condition
+Define when the new behavior should activate.
+
+Examples:
+- specific API endpoint
+- specific request parameter
+- specific state condition
+- specific error scenario
+
+When this condition is NOT met, the system must behave exactly as it currently does.
+
+3. Minimal Code Changes
+List only the code locations that require modification.
+
+For each change include:
+- file
+- function/class
+- exact purpose of modification
+
+Example format:
+
+File:
+Function/Class:
+Change Required:
+Reason:
+
+Avoid introducing new files unless unavoidable.
+
+4. Reused Components
+List existing utilities, services, or modules that will be reused.
+
+Explain how they support the change.
+
+Do NOT create duplicate logic if an existing component can be used.
+
+5. Execution Plan
+Provide a small sequence of implementation tasks.
+
+Tasks must be:
+- minimal
+- localized
+- ordered
+
+Each task should modify only the necessary component.
+
+Example:
+
+Task 1: Modify cache lookup logic in product_service.py  
+Task 2: Add cache write after DB query  
+Task 3: Add cache TTL configuration
+
+6. Preservation Rules
+Explicitly list what must remain unchanged.
+
+Examples:
+- API response schema
+- existing authentication logic
+- database schema
+- logging structure
+- performance-critical paths
+
+These constraints must be enforced during implementation.
+
+7. Risk Check
+Identify possible risks such as:
+- unintended side effects
+- regression points
+- concurrency issues
+- caching inconsistencies
+
+Explain how the implementation plan avoids them.
+
+--------------------------------------------------
+
+Important Rules
+
+- Keep the change surface minimal.
+- Modify existing components rather than introducing new abstractions.
+- Avoid broad refactoring.
+- Preserve current behavior outside the trigger condition.
+- Ensure the change is reversible and isolated.
+
+The output should represent the smallest safe modification needed to implement the feature.
 ```
+
+## 3-Prompt Workflow for Kiro
+Analyze → Delta Spec → Execute
+
+  - Step 1: Analysis
+Run the Spec Mode Analysis Prompt
+  - Step 2: Delta Spec Generation
+Using the above analysis, generate a DELTA spec and task list for implementing the target behavior
+  - Step 3: Execution
